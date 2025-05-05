@@ -37,7 +37,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/profile`);
+        const response = await axios.get(`${process.env.VITE_API_URL}/api/user/profile`);
         setProfile({
           username: response.data.username,
           email: response.data.email
@@ -53,7 +53,7 @@ const UserProfile = () => {
   const handleProfileUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`${process.env.REACT_APP_API_URL}/api/user/profile`, {
+      const response = await axios.put(`${process.env.VITE_API_URL}/api/user/profile`, {
         username: profile.username,
         email: profile.email
       });
@@ -75,7 +75,7 @@ const UserProfile = () => {
     }
 
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/user/profile`, {
+      await axios.put(`${process.env.VITE_API_URL}/api/user/profile`, {
         currentPassword: password.current,
         newPassword: password.new
       });
@@ -90,7 +90,7 @@ const UserProfile = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/user/profile`);
+      await axios.delete(`${process.env.VITE_API_URL}/api/user/profile`);
       await logout();
       navigate('/');
     } catch (error) {
