@@ -33,7 +33,7 @@ const CountryDetail = () => {
     const fetchFavorites = async () => {
       if (user) {
         try {
-          const response = await axios.get('http://localhost:5000/api/user/favorites');
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/favorites`);
           setFavorites(response.data);
           setIsFavorite(response.data.includes(code));
         } catch (error) {
@@ -50,10 +50,10 @@ const CountryDetail = () => {
 
     try {
       if (isFavorite) {
-        await axios.delete(`http://localhost:5000/api/user/favorites/${code}`);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/user/favorites/${code}`);
         setFavorites(favorites.filter(fav => fav !== code));
       } else {
-        await axios.post('http://localhost:5000/api/user/favorites', { countryCode: code });
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/user/favorites`, { countryCode: code });
         setFavorites([...favorites, code]);
       }
       setIsFavorite(!isFavorite);

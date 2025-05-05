@@ -17,7 +17,7 @@ const Favorites = () => {
       if (user) {
         try {
           // First get the favorite country codes
-          const response = await axios.get('http://localhost:5000/api/user/favorites');
+          const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/favorites`);
           const favoriteCodes = response.data;
 
           // Then fetch complete country data for each favorite

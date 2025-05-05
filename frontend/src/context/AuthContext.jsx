@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
         email,
         password
       });
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
         username,
         email,
         password
@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
       
       // Optional: Call backend logout endpoint if you have one
       try {
-        await axios.post('http://localhost:5000/api/auth/logout');
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/logout`);
       } catch (err) {
         console.warn('Backend logout failed:', err);
       }

@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pickme-clone', {
+mongoose.connect(process.env.Mongo_uri , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
