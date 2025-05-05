@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.Mongo_uri , {
+mongoose.connect(process.env.Mongo_uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -31,7 +31,17 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong!' });
 });
 
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ message: 'API is running' });
+});
+
+// For Vercel deployment
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-}); 
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+module.exports = app; 
